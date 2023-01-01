@@ -1,0 +1,39 @@
+[gd_scene load_steps=8 format=3 uid="uid://cyofq8ddtyeox"]
+
+[ext_resource type="Material" uid="uid://lslt01qjk1pi" path="res://assets/materials/transparent_static.tres" id="1_6c11k"]
+[ext_resource type="Script" path="res://physics_3d/move_and_collide/sphere_box/test_sphere_box_1.gd" id="1_swjfi"]
+[ext_resource type="Material" uid="uid://bhrrg1cadvnnf" path="res://assets/materials/test_object.tres" id="2_61h8b"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_w3fhu"]
+size = Vector3(200, 100, 100)
+
+[sub_resource type="BoxMesh" id="BoxMesh_3lhet"]
+size = Vector3(200, 100, 100)
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_yd255"]
+radius = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_58lke"]
+radius = 1.0
+height = 2.0
+
+[node name="TestSphereBox1" type="Node3D"]
+script = ExtResource("1_swjfi")
+
+[node name="Static" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Static"]
+shape = SubResource("BoxShape3D_w3fhu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Static"]
+mesh = SubResource("BoxMesh_3lhet")
+surface_material_override/0 = ExtResource("1_6c11k")
+
+[node name="Character" type="CharacterBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Character"]
+shape = SubResource("SphereShape3D_yd255")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Character"]
+mesh = SubResource("SphereMesh_58lke")
+surface_material_override/0 = ExtResource("2_61h8b")

@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://ctlvevhjqvcn4"]
+
+[ext_resource type="Script" path="res://main.gd" id="1_3d570"]
+
+[sub_resource type="Environment" id="Environment_4kdkf"]
+background_mode = 1
+ambient_light_source = 2
+ambient_light_color = Color(1, 1, 1, 1)
+ambient_light_energy = 0.3
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_d7da7"]
+height = 300.0
+radial_segments = 4
+rings = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0marx"]
+transparency = 1
+albedo_color = Color(1, 0, 0, 0.247059)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o73f8"]
+transparency = 1
+albedo_color = Color(0, 1, 0, 0.247059)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_aflgb"]
+transparency = 1
+albedo_color = Color(0, 0, 1, 0.247059)
+
+[node name="TestMain" type="Node3D"]
+script = ExtResource("1_3d570")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_4kdkf")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.902503, -0.23925, 0.358118, 0, 0.831508, 0.555512, -0.430684, -0.501351, 0.750439, 70, 110, 140)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-3.78552e-08, -0.5, 0.866025, -2.18557e-08, 0.866025, 0.5, -1, 0, -4.37114e-08, 0, 0, 0)
+
+[node name="AxisX" type="MeshInstance3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+mesh = SubResource("CylinderMesh_d7da7")
+surface_material_override/0 = SubResource("StandardMaterial3D_0marx")
+
+[node name="AxisY" type="MeshInstance3D" parent="."]
+mesh = SubResource("CylinderMesh_d7da7")
+surface_material_override/0 = SubResource("StandardMaterial3D_o73f8")
+
+[node name="AxisZ" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+mesh = SubResource("CylinderMesh_d7da7")
+surface_material_override/0 = SubResource("StandardMaterial3D_aflgb")

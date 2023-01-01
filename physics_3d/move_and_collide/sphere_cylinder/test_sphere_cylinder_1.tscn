@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://4kno6tsm5ygh"]
+
+[ext_resource type="Script" path="res://physics_3d/move_and_collide/sphere_cylinder/test_sphere_cylinder_1.gd" id="1_g2xs0"]
+[ext_resource type="Material" uid="uid://lslt01qjk1pi" path="res://assets/materials/transparent_static.tres" id="1_lvoxg"]
+[ext_resource type="Material" uid="uid://bhrrg1cadvnnf" path="res://assets/materials/test_object.tres" id="2_m1xv2"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_jamuw"]
+height = 200.0
+radius = 50.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_si6al"]
+top_radius = 50.0
+bottom_radius = 50.0
+height = 200.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_36yeo"]
+radius = 1.0
+
+[sub_resource type="SphereMesh" id="SphereMesh_puwpu"]
+radius = 1.0
+height = 2.0
+
+[node name="TestSphereCylinder1" type="Node3D"]
+script = ExtResource("1_g2xs0")
+
+[node name="Static" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Static"]
+shape = SubResource("CylinderShape3D_jamuw")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Static"]
+mesh = SubResource("CylinderMesh_si6al")
+surface_material_override/0 = ExtResource("1_lvoxg")
+
+[node name="Character" type="CharacterBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Character"]
+shape = SubResource("SphereShape3D_36yeo")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Character"]
+mesh = SubResource("SphereMesh_puwpu")
+surface_material_override/0 = ExtResource("2_m1xv2")

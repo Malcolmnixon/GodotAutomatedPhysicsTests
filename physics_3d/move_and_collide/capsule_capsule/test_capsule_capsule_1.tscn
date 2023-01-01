@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://physics_3d/move_and_collide/capsule_capsule/test_capsule_capsule_1.gd" id="1_hp3kf"]
+[ext_resource type="Material" uid="uid://lslt01qjk1pi" path="res://assets/materials/transparent_static.tres" id="1_i3oop"]
+[ext_resource type="Material" uid="uid://bhrrg1cadvnnf" path="res://assets/materials/test_object.tres" id="2_xf88v"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_pa8u7"]
+radius = 50.0
+height = 200.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_2oe83"]
+radius = 50.0
+height = 200.0
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7knjh"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_0kooh"]
+
+[node name="TestCapsuleCapsule1" type="Node3D"]
+script = ExtResource("1_hp3kf")
+
+[node name="Static" type="StaticBody3D" parent="."]
+transform = Transform3D(-4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Static"]
+shape = SubResource("CapsuleShape3D_pa8u7")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Static"]
+mesh = SubResource("CapsuleMesh_2oe83")
+skeleton = NodePath("../CollisionShape3D")
+surface_material_override/0 = ExtResource("1_i3oop")
+
+[node name="Character" type="CharacterBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Character"]
+shape = SubResource("CapsuleShape3D_7knjh")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Character"]
+mesh = SubResource("CapsuleMesh_0kooh")
+surface_material_override/0 = ExtResource("2_xf88v")
