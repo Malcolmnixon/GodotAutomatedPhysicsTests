@@ -176,7 +176,7 @@ func test_scan_xyz_pos():
 
 	# Ensure normal
 	Test.are_equal_vec3(
-		Vector3(0.57735, 0.57735, 0),
+		Vector3(0.57735, 0.57735, 0.57735),
 		collide.get_normal(),
 		"Collision normal",
 		NORMAL_TOLERANCE)
